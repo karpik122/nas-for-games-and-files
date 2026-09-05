@@ -9,9 +9,12 @@
     "install:all": "npm install",
     "dev:api": "npm run dev -w apps/api",
     "dev:web": "npm run dev -w apps/web",
-    "dev": "npm run dev:api & npm run dev:web",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
     "build": "npm run build -w apps/api && npm run build -w apps/web",
     "start:api": "npm run start -w apps/api",
     "lint:web": "npm run lint -w apps/web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
   }
 }
