@@ -1,0 +1,28 @@
+[Unit]
+Description=KarpikNAS API
+After=network-online.target docker.service
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=simple
+User=karpiknas
+Group=karpiknas
+SupplementaryGroups=docker
+WorkingDirectory=/opt/karpiknas/apps/api
+EnvironmentFile=/etc/karpiknas/karpiknas.env
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+ExecStart=/usr/bin/env node dist/server.js
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=20
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/karpiknas /srv/karpiknas/storage /opt/karpiknas/game-servers/minecraft
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
