@@ -101,12 +101,7 @@ function Login({ onGoHome, onLogin }: LoginProps) {
               {submitting ? <><span className="spinner" /> Logowanie…</> : <>Zaloguj się <span>→</span></>}
             </button>
 
-            {import.meta.env.DEV && (
-              <div className="demo-credentials">
-                <span>Tryb developerski</span>
-                <p>Login: <code>admin</code> · Hasło: <code>karpiknas</code></p>
-              </div>
-            )}
+          
           </form>
         </div>
       </section>
